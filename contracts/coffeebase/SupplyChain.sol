@@ -286,38 +286,47 @@ contract SupplyChain is
     // Define a function 'shipItem' that allows the distributor to mark an item 'Shipped'
     // Use the above modifers to check if the item is sold
     function shipItem(uint256 _upc)
-        public
+        public onlyDistributor sold(_upc)
     // Call modifier to check if upc has passed previous supply chain stage
-
     // Call modifier to verify caller of this function
-
     {
         // Update the appropriate fields
+        items[_upc].itemState = State.Shipped;
+
         // Emit the appropriate event
+        emit Shipped(_upc);
     }
 
     // Define a function 'receiveItem' that allows the retailer to mark an item 'Received'
     // Use the above modifiers to check if the item is shipped
     function receiveItem(uint256 _upc)
-        public
+        public onlyRetailer shipped(_upc)
     // Call modifier to check if upc has passed previous supply chain stage
-
     // Access Control List enforced by calling Smart Contract / DApp
     {
         // Update the appropriate fields - ownerID, retailerID, itemState
+        items[_upc].ownerID = msg.sender;
+        items[_upc].retailerID = msg.sender;
+        items[_upc].itemState = State.Received;
+
         // Emit the appropriate event
+        emit Received(_upc);
     }
 
     // Define a function 'purchaseItem' that allows the consumer to mark an item 'Purchased'
     // Use the above modifiers to check if the item is received
     function purchaseItem(uint256 _upc)
-        public
+        public onlyConsumer received(_upc)
     // Call modifier to check if upc has passed previous supply chain stage
-
     // Access Control List enforced by calling Smart Contract / DApp
     {
         // Update the appropriate fields - ownerID, consumerID, itemState
+        items[_upc].ownerID = msg.sender;
+        items[_upc].consumerID = msg.sender;
+        items[_upc].itemState = State.Purchased;
+
         // Emit the appropriate event
+        emit Purchased(_upc);
     }
 
     // Define a function 'fetchItemBufferOne' that fetches the data
@@ -338,14 +347,14 @@ contract SupplyChain is
         // Assign values to the 8 parameters
 
         return (
-            itemSKU,
-            itemUPC,
-            ownerID,
-            originFarmerID,
-            originFarmName,
-            originFarmInformation,
-            originFarmLatitude,
-            originFarmLongitude
+            itemSKU = items[_upc].sku,
+            itemUPC = items[_upc].upc,
+            ownerID = items[_upc].ownerID,
+            originFarmerID = items[_upc].originFarmerID,
+            originFarmName = items[_upc].originFarmName,
+            originFarmInformation = items[_upc].originFarmInformation,
+            originFarmLatitude = items[_upc].originFarmLatitude,
+            originFarmLongitude = items[_upc].originFarmLongitude,
         );
     }
 
@@ -368,15 +377,15 @@ contract SupplyChain is
         // Assign values to the 9 parameters
 
         return (
-            itemSKU,
-            itemUPC,
-            productID,
-            productNotes,
-            productPrice,
-            itemState,
-            distributorID,
-            retailerID,
-            consumerID
+            itemSKU = items[_upc].sku,,
+            itemUPC = items[_upc].upc,
+            productID = items[_upc].productID,
+            productNotes = items[_upc].productNotes,
+            productPrice = items[_upc].productPrice,
+            itemState = items[_upc].itemState,
+            distributorID = items[_upc].distributorID,
+            retailerID = items[_upc].retailerID,
+            consumerID = items[_upc].consumerID,
         );
     }
 }
