@@ -354,38 +354,39 @@ contract SupplyChain is
             originFarmName = items[_upc].originFarmName,
             originFarmInformation = items[_upc].originFarmInformation,
             originFarmLatitude = items[_upc].originFarmLatitude,
-            originFarmLongitude = items[_upc].originFarmLongitude,
+            originFarmLongitude = items[_upc].originFarmLongitude
         );
     }
 
+/*
     // Define a function 'fetchItemBufferTwo' that fetches the data
     function fetchItemBufferTwo(uint256 _upc)
         public
         view
         returns (
             uint256 itemSKU,
-            uint256 itemUPC,
+            //uint256 itemUPC,
             uint256 productID,
             string memory productNotes,
             uint256 productPrice,
             uint256 itemState,
             address distributorID,
-            address retailerID,
+            //address retailerID,
             address consumerID
         )
     {
         // Assign values to the 9 parameters
 
         return (
-            itemSKU = items[_upc].sku,,
+            itemSKU = items[_upc].sku,
             itemUPC = items[_upc].upc,
             productID = items[_upc].productID,
             productNotes = items[_upc].productNotes,
             productPrice = items[_upc].productPrice,
-            itemState = items[_upc].itemState,
+            itemState = uint256(items[_upc].itemState),
             distributorID = items[_upc].distributorID,
             retailerID = items[_upc].retailerID,
-            consumerID = items[_upc].consumerID,
+            consumerID = items[_upc].consumerID
         );
-    }
+    }*/
 }
