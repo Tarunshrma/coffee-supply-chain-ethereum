@@ -73,12 +73,6 @@ contract SupplyChain is
     event Received(uint256 upc);
     event Purchased(uint256 upc);
 
-    // Define a modifer that checks to see if msg.sender == owner of the contract
-    // modifier onlyOwner() {
-    //     require(msg.sender == owner);
-    //     _;
-    // }
-
     // Define a modifer that verifies the Caller
     modifier verifyCaller(address _address) {
         require(msg.sender == _address);
@@ -392,6 +386,8 @@ contract SupplyChain is
         public
         view
         returns (
+            uint256 itemSKU,
+            uint256 itemUPC,
             address ownerID,
             address distributorID,
             address retailerID,
@@ -399,6 +395,8 @@ contract SupplyChain is
         )
     {
         return (
+            itemSKU = items[_upc].sku,
+            itemUPC = items[_upc].upc,
             ownerID = items[_upc].ownerID,
             distributorID = items[_upc].distributorID,
             retailerID = items[_upc].retailerID,
