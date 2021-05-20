@@ -238,7 +238,7 @@ contract SupplyChain is
     function sellItem(uint256 _upc, uint256 _price)
         public
         onlyFarmer
-        forSale(_upc)
+        packed(_upc)
     // Call modifier to check if upc has passed previous supply chain stage
     // Call modifier to verify caller of this function
 
