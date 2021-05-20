@@ -286,7 +286,9 @@ contract SupplyChain is
     // Define a function 'shipItem' that allows the distributor to mark an item 'Shipped'
     // Use the above modifers to check if the item is sold
     function shipItem(uint256 _upc)
-        public onlyDistributor sold(_upc)
+        public
+        onlyDistributor
+        sold(_upc)
     // Call modifier to check if upc has passed previous supply chain stage
     // Call modifier to verify caller of this function
     {
@@ -300,7 +302,9 @@ contract SupplyChain is
     // Define a function 'receiveItem' that allows the retailer to mark an item 'Received'
     // Use the above modifiers to check if the item is shipped
     function receiveItem(uint256 _upc)
-        public onlyRetailer shipped(_upc)
+        public
+        onlyRetailer
+        shipped(_upc)
     // Call modifier to check if upc has passed previous supply chain stage
     // Access Control List enforced by calling Smart Contract / DApp
     {
@@ -316,7 +320,9 @@ contract SupplyChain is
     // Define a function 'purchaseItem' that allows the consumer to mark an item 'Purchased'
     // Use the above modifiers to check if the item is received
     function purchaseItem(uint256 _upc)
-        public onlyConsumer received(_upc)
+        public
+        onlyConsumer
+        received(_upc)
     // Call modifier to check if upc has passed previous supply chain stage
     // Access Control List enforced by calling Smart Contract / DApp
     {
@@ -336,7 +342,6 @@ contract SupplyChain is
         returns (
             uint256 itemSKU,
             uint256 itemUPC,
-            address ownerID,
             address originFarmerID,
             string memory originFarmName,
             string memory originFarmInformation,
@@ -349,7 +354,6 @@ contract SupplyChain is
         return (
             itemSKU = items[_upc].sku,
             itemUPC = items[_upc].upc,
-            ownerID = items[_upc].ownerID,
             originFarmerID = items[_upc].originFarmerID,
             originFarmName = items[_upc].originFarmName,
             originFarmInformation = items[_upc].originFarmInformation,
@@ -358,21 +362,17 @@ contract SupplyChain is
         );
     }
 
-/*
     // Define a function 'fetchItemBufferTwo' that fetches the data
     function fetchItemBufferTwo(uint256 _upc)
         public
         view
         returns (
             uint256 itemSKU,
-            //uint256 itemUPC,
+            uint256 itemUPC,
             uint256 productID,
             string memory productNotes,
             uint256 productPrice,
-            uint256 itemState,
-            address distributorID,
-            //address retailerID,
-            address consumerID
+            uint256 itemState
         )
     {
         // Assign values to the 9 parameters
@@ -383,10 +383,26 @@ contract SupplyChain is
             productID = items[_upc].productID,
             productNotes = items[_upc].productNotes,
             productPrice = items[_upc].productPrice,
-            itemState = uint256(items[_upc].itemState),
+            itemState = uint256(items[_upc].itemState)
+        );
+    }
+
+    // Define a function 'fetchItemBufferThree' that fetches the data
+    function fetchItemBufferThree(uint256 _upc)
+        public
+        view
+        returns (
+            address ownerID,
+            address distributorID,
+            address retailerID,
+            address consumerID
+        )
+    {
+        return (
+            ownerID = items[_upc].ownerID,
             distributorID = items[_upc].distributorID,
             retailerID = items[_upc].retailerID,
             consumerID = items[_upc].consumerID
         );
-    }*/
+    }
 }
