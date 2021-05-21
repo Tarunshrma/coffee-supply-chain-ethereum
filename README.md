@@ -3,7 +3,8 @@
 ## Table of Contents
 1. [General Info](#general-info)
 2. [Design Diagrams](#design-diagrams)
-2. [Unit Tests](#unit-test)
+3. [Unit Tests](#unit-test)
+3. [Deplyment Info](#deplyment-info)
 
 
 ### general-info
@@ -19,3 +20,9 @@ This is simplified version of coffee beans supply chain solution using Blockchai
 
 ### unit-test
 ![Unit Test Case](/assests/test-case-suite.png)
+
+### deplyment-info
+#### [Rinkby/EtherScan Details](https://rinkeby.etherscan.io/address/0xc0f140f7ec513904be91bac0734a8c28c5d20103)
+Deployed Contract Address: 0xc0f140f7ec513904be91bac0734a8c28c5d20103
+Supply Chain Transaction Hash: 0x2d71e2a16a7bb6cc6f57c6631b28c03d9ae51211d27a60f66fa581048cd4eaa6 
+![Deployment Info](/assests/rinkby-deployment.png)
