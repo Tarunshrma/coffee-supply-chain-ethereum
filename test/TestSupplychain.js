@@ -174,20 +174,21 @@ contract('SupplyChain', function(accounts) {
         supplyChain.Sold({}, (err,event) => {
             eventEmitted = true;
         })
+
+        await supplyChain.addDistributor(distributorID, {from: ownerID});
         
-        await supplyChain.transferOwnership(distributorID);
         // Mark an item as Sold by calling function buyItem()
-        await supplyChain.buyItem(upc,{from: distributorID, value: productPrice});
+        await supplyChain.buyItem(upc, {from: distributorID, value: productPrice});
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
         const result = await supplyChain.fetchItemBufferTwo(upc);
         const result1 = await supplyChain.fetchItemBufferThree(upc);
 
-        // Verify the result set
+        // // Verify the result set
         assert.equal(result[5],4,'Error: Missing or Invalid itemState')
         assert.equal(eventEmitted,true,'Invalid event emitted')
 
-        assert.equal(result1[2],ownerID,'Error: Missing or Invalid ownerID')
+        assert.equal(result1[2],distributorID,'Error: Missing or Invalid ownerID')
         assert.equal(result1[3],distributorID,'Error: Missing or Invalid distributorID')
     })    
 

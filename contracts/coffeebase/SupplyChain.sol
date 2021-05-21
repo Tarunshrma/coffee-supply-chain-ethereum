@@ -265,12 +265,12 @@ contract SupplyChain is
     // Call modifer to check if buyer has paid enough
     // Call modifer to send any excess ether back to buyer
     {
-        // Update the appropriate fields - ownerID, distributorID, itemState
+        // // Update the appropriate fields - ownerID, distributorID, itemState
         items[_upc].ownerID = msg.sender;
         items[_upc].distributorID = msg.sender;
         items[_upc].itemState = State.Sold;
 
-        // Transfer money to farmer
+        // // Transfer money to farmer
         items[_upc].originFarmerID.transfer(items[_upc].productPrice);
 
         // emit the appropriate event
