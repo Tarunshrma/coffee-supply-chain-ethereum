@@ -163,7 +163,7 @@ contract('SupplyChain', function(accounts) {
     })    
 
   
-    // 5th Test
+    // 5th Test  
     it("Testing smart contract function buyItem() that allows a distributor to buy coffee", async() => {
         const supplyChain = await SupplyChain.deployed()
         
@@ -192,45 +192,59 @@ contract('SupplyChain', function(accounts) {
         assert.equal(result1[3],distributorID,'Error: Missing or Invalid distributorID')
     })    
 
-/*
+
     // 6th Test
     it("Testing smart contract function shipItem() that allows a distributor to ship coffee", async() => {
         const supplyChain = await SupplyChain.deployed()
         
         // Declare and Initialize a variable for event
+        var eventEmitted = false;
         
         
         // Watch the emitted event Shipped()
-        
+        supplyChain.Shipped({},(err,event)=>{
+            eventEmitted = true;
+        });
 
         // Mark an item as Sold by calling function buyItem()
-        
+        await supplyChain.shipItem(upc);
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
-        
+        const result = await supplyChain.fetchItemBufferTwo(upc);
 
         // Verify the result set
-              
+        assert.equal(result[5],5,'Error: Missing or Invalid itemState')
+        assert.equal(eventEmitted,true,'Invalid event emitted');
     })    
 
+    
     // 7th Test
     it("Testing smart contract function receiveItem() that allows a retailer to mark coffee received", async() => {
         const supplyChain = await SupplyChain.deployed()
         
         // Declare and Initialize a variable for event
-        
+        var eventEmitted = false;
         
         // Watch the emitted event Received()
-        
+        supplyChain.Received({}, (err,event)=>{
+            eventEmitted = true;
+        })
 
-        // Mark an item as Sold by calling function buyItem()
-        
+        // Mark an item as Sold by calling function receiveItem()
+        await supplyChain.addRetailer(retailerID);
+        await supplyChain.receiveItem(upc,{from : retailerID});
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
-        
+        const result = await supplyChain.fetchItemBufferTwo(upc);
+        const result1 = await supplyChain.fetchItemBufferThree(upc);
+
 
         // Verify the result set
-             
+        assert.equal(eventEmitted,true,'Invalid event emitted');
+        assert.equal(result[5],6,'Error: Missing or Invalid itemState')
+
+        assert.equal(result1[2],retailerID,'Error: Missing or Invalid ownerID')
+        assert.equal(result1[4],retailerID,'Error: Missing or Invalid distributorID')
     })    
 
     // 8th Test
@@ -238,18 +252,28 @@ contract('SupplyChain', function(accounts) {
         const supplyChain = await SupplyChain.deployed()
         
         // Declare and Initialize a variable for event
+        var eventEmitted = false;
         
-        
-        // Watch the emitted event Purchased()
-        
+        // Watch the emitted event Received()
+        supplyChain.Purchased({}, (err,event)=>{
+            eventEmitted = true;
+        })
 
-        // Mark an item as Sold by calling function buyItem()
-        
+        // Purchase an item by calling function purchaseItem()
+        await supplyChain.addConsumer(consumerID);
+        await supplyChain.purchaseItem(upc,{from : consumerID});
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
-        
+        const result = await supplyChain.fetchItemBufferTwo(upc);
+        const result1 = await supplyChain.fetchItemBufferThree(upc);
+
 
         // Verify the result set
+        assert.equal(eventEmitted,true,'Invalid event emitted');
+        assert.equal(result[5],7,'Error: Missing or Invalid itemState')
+
+        assert.equal(result1[2],consumerID,'Error: Missing or Invalid ownerID')
+        assert.equal(result1[5],consumerID,'Error: Missing or Invalid consumerID')
         
     })    
 
@@ -258,22 +282,43 @@ contract('SupplyChain', function(accounts) {
         const supplyChain = await SupplyChain.deployed()
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
-        
+        const result = await supplyChain.fetchItemBufferOne(upc);
         
         // Verify the result set:
-        
+        assert.equal(result[0],sku,'Error: Missing or Invalid sku')
+        assert.equal(result[1],upc,'Error: Missing or Invalid upc')
+        assert.equal(result[2],originFarmerID,'Error: Missing or farmer id')
+        assert.equal(result[3],originFarmName,'Error: Missing or Invalid farmer name')
+        assert.equal(result[4],originFarmInformation,'Error: Missing or Invalid farmer infomation')
+        assert.equal(result[5],originFarmLatitude,'Error: Missing or Invalid farm latitude')
+        assert.equal(result[6],originFarmLongitude,'Error: Missing or Invalid farm longitude')
     })
-
+ 
     // 10th Test
     it("Testing smart contract function fetchItemBufferTwo() that allows anyone to fetch item details from blockchain", async() => {
         const supplyChain = await SupplyChain.deployed()
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
-        
+        const result = await supplyChain.fetchItemBufferTwo(upc);
         
         // Verify the result set:
-        
-    })*/
+        assert.equal(result[2],productID,'Error: Missing or Invalid productID')
+        assert.equal(result[3],productNotes,'Error: Missing or Invalid product Notes')
+        assert.equal(result[4],productPrice,'Error: Missing or Invalid product price')
+    })
+
+        // 11th Test
+        it("Testing smart contract function fetchItemBufferTheree() that allows anyone to fetch actor details from blockchain", async() => {
+            const supplyChain = await SupplyChain.deployed()
+    
+            // Retrieve the just now saved item from blockchain by calling function fetchItem()
+            const result = await supplyChain.fetchItemBufferThree(upc);
+            
+            // Verify the result set:
+            assert.equal(result[3],distributorID,'Error: Missing or Invalid distributor ID')
+            assert.equal(result[4],retailerID,'Error: Missing or Invalid product retailer ID')
+            assert.equal(result[5],consumerID,'Error: Missing or Invalid consumer ID')
+        })
 
 });
 
