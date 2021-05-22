@@ -21,6 +21,9 @@ This is simplified version of coffee beans supply chain solution using Blockchai
 #### Class Diagram
 ![Class Diagram](/design-diagrams/class-diagram.jpg)
 
+#### State Diagram
+![State Diagram](/design-diagrams/state-diagram.jpg)
+
 ### unit-test
 ![Unit Test Case](/assests/test-case-suite.png)
 
