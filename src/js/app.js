@@ -101,6 +101,8 @@ App = {
         /// Source the truffle compiled smart contracts
         var jsonSupplyChain='../../build/contracts/SupplyChain.json';
         
+        web3.eth.defaultAccount = web3.eth.accounts[0];
+
         /// JSONfy the smart contracts
         $.getJSON(jsonSupplyChain, function(data) {
             console.log('data',data);
