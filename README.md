@@ -2,13 +2,27 @@
 
 ## Table of Contents
 1. [General Info](#general-info)
-2. [Design Diagrams](#design-diagrams)
-3. [Unit Tests](#unit-test)
-3. [Deplyment Info](#deplyment-info)
+2. [External Liberary](#external-liberary)
+3. [Design Diagrams](#design-diagrams)
+4. [Unit Tests](#unit-test)
+5. [Deplyment Info](#deplyment-info)
 
 
 ### general-info
 This is simplified version of coffee beans supply chain solution using Blockchain technologies. This project is part of [Udacity Nanodegree program](https://www.udacity.com/course/blockchain-developer-nanodegree--nd1309?coupon=SAVE75&utm_source=gsem_brand&utm_medium=ads_r&utm_campaign=1971936383_c&utm_term=71052942455_in&utm_keyword=udacity%20nanodegree%20blockchain_e&gclid=EAIaIQobChMI08-r8KfR8AIVGARgCh2wvw0oEAAYASAAEgKnTfD_BwE) 
+
+### external-liberary/Packages
+#### Roles
+I have used the library called Roles which made it easier to manage AccessControl in my DAPP. It made it easy to add and remove roles in each of my AccessControl contracts (FarmerRole.sol, DistributorRole.sol, RetailerRole.sol, and ConsumerRole.sol).
+
+#### truffle-contract
+[Tuffle Contract](https://www.npmjs.com/package/@truffle/contract) is used to interect with deployed contract and call functions using java script. In this project I have embedded the truffle-contract as embedded script.
+
+#### Web3 JS
+[web3.js](https://web3js.readthedocs.io/) is a collection of libraries that allow you to interact with a local or remote ethereum node using HTTP, IPC or WebSocket.
+
+#### HDWalletProvider
+[HDWalletProvider](https://www.npmjs.com/package/@truffle/hdwallet-provider) is configured in truffle.js and is used to connect to blockchain like Rinkeby or Mainnet.
 
 
 ### design-diagrams
