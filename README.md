@@ -8,6 +8,7 @@
 5. [Deplyment Info](#deplyment-info)
 6. [Installation](#installation)
 7. [Front End](#FrontEnd)
+8. [Setup Quorum] (#Quorum Setup)
 
 ### general-info
 This is simplified version of coffee beans supply chain solution using Blockchain technologies. This project is part of [Udacity Nanodegree program](https://www.udacity.com/course/blockchain-developer-nanodegree--nd1309?coupon=SAVE75&utm_source=gsem_brand&utm_medium=ads_r&utm_campaign=1971936383_c&utm_term=71052942455_in&utm_keyword=udacity%20nanodegree%20blockchain_e&gclid=EAIaIQobChMI08-r8KfR8AIVGARgCh2wvw0oEAAYASAAEgKnTfD_BwE) 
@@ -87,3 +88,13 @@ npm run dev
 
 ### FrontEnd
 ![Front End](/assests/front-end.png)
+
+### Quorum Setup
+The easiest way to get a network up and running is by using the [GoQuorum Wizard](https://docs.goquorum.consensys.net/en/stable/HowTo/GetStarted/Wizard/GettingStarted/). This command-line tool creates a local GoQuorum network that can be started and be ready for use in minutes.
+
+Installing Quorum : 3 Node setup (QuickStart)
+```bash
+npm install -g quorum-wizard
+quorum-wizard
+```
+![Quorum Setup](/assests/quorum/quorum-setup-3node.png)
