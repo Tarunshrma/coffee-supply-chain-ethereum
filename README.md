@@ -6,6 +6,7 @@
 3. [Design Diagrams](#design-diagrams)
 4. [Unit Tests](#unit-test)
 5. [Deplyment Info](#deplyment-info)
+6. [Installation](#installation)
 
 
 ### general-info
@@ -38,11 +39,42 @@ I have used the library called Roles which made it easier to manage AccessContro
 #### State Diagram
 ![State Diagram](/design-diagrams/state-diagram.jpg)
 
-### unit-test
-![Unit Test Case](/assests/test-case-suite.png)
-
 ### deplyment-info
 #### [Rinkby/EtherScan Details](https://rinkeby.etherscan.io/address/0xc0f140f7ec513904be91bac0734a8c28c5d20103)
 Deployed Contract Address: 0xc0f140f7ec513904be91bac0734a8c28c5d20103
 Supply Chain Transaction Hash: 0x2d71e2a16a7bb6cc6f57c6631b28c03d9ae51211d27a60f66fa581048cd4eaa6 
 ![Deployment Info](/assests/rinkby-deployment.png)
+
+### installation
+A step by step series of examples that tell you have to get a development env running
+
+Clone this repository:
+
+```bash
+git clone https://github.com/Tarunshrma/coffee-supply-chain-ethereum.git
+```
+
+Change directory to coffee-supply-chain-ethereum folder and install all requisite npm packages (as listed in package.json):
+
+```bash
+cd coffee-supply-chain-ethereum
+npm install
+```
+
+Compile the smart contracts
+```bash
+truffle compile
+```
+
+Launch the local instance of blockchain to test your smart contracts. 
+```bash
+truffle develop
+```
+This command will launch the local blockchain at http://127.0.0.1:9545/ with test accounts and private keys. You can use those accounts to test and execute the smart contracts locally without deploying it to TestNet or MainNet. 
+![Truffle Develop Info](/assests/truffle-develop-command.png)
+
+Run Test Cases
+```bash
+truffle test
+```
+![Unit Test Case](/assests/test-case-suite.png)
