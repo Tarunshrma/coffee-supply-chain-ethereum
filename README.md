@@ -98,3 +98,13 @@ npm install -g quorum-wizard
 quorum-wizard
 ```
 ![Quorum Setup](/assests/quorum/quorum-setup-3node.png)
+
+Start Quorum network
+```bash
+cd <directory where quorum-wizard ran>/network/3-node-quickstart
+./start.sh
+quorum-wizard
+```
+![Quorum Setup](/assests/quorum/start-quorum-network.png)
+
+Now your 3-node Quorum network is up and running and you can view it using cupcake dashboard using http://localhost/8999
