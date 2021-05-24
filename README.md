@@ -108,3 +108,11 @@ quorum-wizard
 ![Quorum Setup](/assests/quorum/start-quorum-network.png)
 
 Now your 3-node Quorum network is up and running and you can view it using cupcake dashboard using http://localhost/8999
+![Quorum Setup](/assests/quorum/qourum-console.png)
+
+Make change in truffle.config to point to Quorum nodes and deploy smart contract on nodeone
+```bash
+truffle migrate --network nodeone
+quorum-wizard
+```
+![Quorum Setup](/assests/quorum/node1-deployment.png)
